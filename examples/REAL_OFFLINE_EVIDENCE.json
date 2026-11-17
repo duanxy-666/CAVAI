@@ -1,0 +1,337 @@
+{
+  "mode": "OFFLINE_RULES_NOT_AN_AGENT",
+  "generated_from": "samples/bracket_4hole.step",
+  "source_sha256": "84200f6babd35ad2dc64ab8b194ec28974b7e30e34ffb3aff2dfa189d7e6d464",
+  "requirements": {
+    "max_envelope_mm": [
+      81,
+      51,
+      7
+    ],
+    "expected_solid_count": 1,
+    "target_cylinder_diameter_mm": 6,
+    "cylinder_tolerance_mm": 0.1
+  },
+  "measurements": {
+    "format": "STEP",
+    "geometry_type": "brep",
+    "units": "mm",
+    "unit_note": "OCCT STEP length units normalized to mm",
+    "bounds_mm": [
+      80.0,
+      50.0,
+      6.0
+    ],
+    "bounding_box": {
+      "size": [
+        80.0,
+        50.0,
+        6.0
+      ],
+      "min": [
+        -40.0,
+        -25.0,
+        -0.0
+      ],
+      "max": [
+        40.0,
+        25.0,
+        6.0
+      ],
+      "unit": "mm"
+    },
+    "volume_mm3": 23321.416,
+    "volume_note": "Physical volume only reported for recognized solid B-Rep topology",
+    "valid_brep": true,
+    "solid_count": 1,
+    "shell_count": 1,
+    "face_count": 10,
+    "edge_count": 48,
+    "vertex_count": 96,
+    "cylindrical_faces": [
+      {
+        "face_index": 7,
+        "diameter_mm": 6.0,
+        "axis_direction": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "note": "cylindrical surface, NOT a proven through-hole"
+      },
+      {
+        "face_index": 8,
+        "diameter_mm": 6.0,
+        "axis_direction": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "note": "cylindrical surface, NOT a proven through-hole"
+      },
+      {
+        "face_index": 9,
+        "diameter_mm": 6.0,
+        "axis_direction": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "note": "cylindrical surface, NOT a proven through-hole"
+      },
+      {
+        "face_index": 10,
+        "diameter_mm": 6.0,
+        "axis_direction": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "note": "cylindrical surface, NOT a proven through-hole"
+      }
+    ],
+    "cylinder_face_count": 4,
+    "parameter_tree_available": false,
+    "assembly_hierarchy_available": false,
+    "native_constraints_available": false,
+    "limits": [
+      "STEP/IGES import does not reconstruct a CATIA parametric feature tree",
+      "B-Rep geometric validity does not prove strength, assembly fit, or manufacturability",
+      "Cylinder faces are candidates, not certified hole features"
+    ]
+  },
+  "checks": [
+    {
+      "tool": "check_topology",
+      "status": "pass",
+      "scope": "structural",
+      "title": "B-Rep 基础拓扑有效",
+      "evidence": {
+        "occt_brep_valid": true,
+        "solid_count": 1,
+        "shell_count": 1,
+        "face_count": 10
+      },
+      "explanation": "OCCT 实际重新执行 BRepCheck_Analyzer；非零实体且拓扑有效时仅确认基础结构有效",
+      "recommendation": "",
+      "evidence_id": "OFF-0001",
+      "origin": "offline_rule_only"
+    },
+    {
+      "tool": "inspect_dimensions",
+      "status": "info",
+      "scope": "structural",
+      "title": "CAD 测量结果",
+      "evidence": {
+        "bounding_box": {
+          "size": [
+            80.0,
+            50.0,
+            6.0
+          ],
+          "min": [
+            -40.0,
+            -25.0,
+            -0.0
+          ],
+          "max": [
+            40.0,
+            25.0,
+            6.0
+          ],
+          "unit": "mm"
+        },
+        "volume_mm3": 23321.416,
+        "volume_native": null
+      },
+      "explanation": "尺寸来自 CAD/网格解析器；包围盒沿导入模型坐标轴，体积不等于承载能力",
+      "recommendation": "",
+      "evidence_id": "OFF-0002",
+      "origin": "offline_rule_only"
+    },
+    {
+      "tool": "inspect_cylindrical_faces",
+      "status": "info",
+      "scope": "structural",
+      "title": "解析圆柱面测量",
+      "evidence": {
+        "candidate_count": 4,
+        "samples": [
+          {
+            "face_index": 7,
+            "diameter_mm": 6.0,
+            "axis_direction": [
+              0.0,
+              0.0,
+              -1.0
+            ],
+            "note": "cylindrical surface, NOT a proven through-hole"
+          },
+          {
+            "face_index": 8,
+            "diameter_mm": 6.0,
+            "axis_direction": [
+              0.0,
+              0.0,
+              -1.0
+            ],
+            "note": "cylindrical surface, NOT a proven through-hole"
+          },
+          {
+            "face_index": 9,
+            "diameter_mm": 6.0,
+            "axis_direction": [
+              0.0,
+              0.0,
+              -1.0
+            ],
+            "note": "cylindrical surface, NOT a proven through-hole"
+          },
+          {
+            "face_index": 10,
+            "diameter_mm": 6.0,
+            "axis_direction": [
+              0.0,
+              0.0,
+              -1.0
+            ],
+            "note": "cylindrical surface, NOT a proven through-hole"
+          }
+        ]
+      },
+      "explanation": "OCCT 精确解析几何曲面；圆柱面可能是孔内壁、轴面或局部曲面，不能直接证明孔为通孔",
+      "recommendation": "",
+      "evidence_id": "OFF-0003",
+      "origin": "offline_rule_only"
+    },
+    {
+      "tool": "check_component_count",
+      "status": "pass",
+      "scope": "functional",
+      "title": "实体数量符合明确要求",
+      "evidence": {
+        "detected_count": 1,
+        "representation": "B-Rep solids",
+        "expected_count": 1
+      },
+      "explanation": "由真实拓扑/网格连通性得到数量；装配层级未被恢复",
+      "recommendation": "",
+      "evidence_id": "OFF-0004",
+      "origin": "offline_rule_only"
+    },
+    {
+      "tool": "check_envelope",
+      "status": "pass",
+      "scope": "functional",
+      "title": "导入坐标系下的包络尺寸符合要求",
+      "evidence": {
+        "measured_mm": [
+          80.0,
+          50.0,
+          6.0
+        ],
+        "max_allowed_mm": [
+          81,
+          51,
+          7
+        ],
+        "excess_mm": [
+          -1.0,
+          -1.0,
+          -1.0
+        ]
+      },
+      "explanation": "比较 CAD 实际坐标轴对齐包围盒与用户明确给定的 XYZ 限制；不包括装配空间干涉",
+      "recommendation": "",
+      "evidence_id": "OFF-0005",
+      "origin": "offline_rule_only"
+    },
+    {
+      "tool": "check_target_cylinder",
+      "status": "pass",
+      "scope": "functional",
+      "title": "发现尺寸相符的候选圆柱面",
+      "evidence": {
+        "target_mm": 6,
+        "tolerance_mm": 0.1,
+        "matches": [
+          {
+            "face_index": 7,
+            "diameter_mm": 6.0,
+            "axis_direction": [
+              0.0,
+              0.0,
+              -1.0
+            ],
+            "note": "cylindrical surface, NOT a proven through-hole"
+          },
+          {
+            "face_index": 8,
+            "diameter_mm": 6.0,
+            "axis_direction": [
+              0.0,
+              0.0,
+              -1.0
+            ],
+            "note": "cylindrical surface, NOT a proven through-hole"
+          },
+          {
+            "face_index": 9,
+            "diameter_mm": 6.0,
+            "axis_direction": [
+              0.0,
+              0.0,
+              -1.0
+            ],
+            "note": "cylindrical surface, NOT a proven through-hole"
+          },
+          {
+            "face_index": 10,
+            "diameter_mm": 6.0,
+            "axis_direction": [
+              0.0,
+              0.0,
+              -1.0
+            ],
+            "note": "cylindrical surface, NOT a proven through-hole"
+          }
+        ],
+        "candidate_face_count": 4
+      },
+      "explanation": "仅证明存在/不存在匹配的解析圆柱曲面，不证明它是安装孔或其孔距、通孔状态、配合公差正确",
+      "recommendation": "若期望安装孔，请补充配合模型或工程图以确认孔的拓扑和位置",
+      "evidence_id": "OFF-0006",
+      "origin": "offline_rule_only"
+    },
+    {
+      "tool": "check_function_context",
+      "status": "unverified",
+      "scope": "functional",
+      "title": "完整功能适用性证据不足",
+      "evidence": {
+        "missing_context": [
+          "配合件几何及装配基准",
+          "载荷与工况",
+          "材料及许用强度",
+          "制造工艺与公差",
+          "实际功能验收标准"
+        ],
+        "provided_explicit_constraints": {
+          "max_envelope_mm": [
+            81,
+            51,
+            7
+          ],
+          "expected_solid_count": 1,
+          "target_cylinder_diameter_mm": 6,
+          "cylinder_tolerance_mm": 0.1
+        }
+      },
+      "explanation": "当前 MVP 仅支持明示包络、实体数量和圆柱面尺寸的部分比对；不能给出强度/配合/疲劳结论",
+      "recommendation": "上传配合零件、工程图并补充明确设计条件，扩展相应的 CAD/CAE 检查工具",
+      "evidence_id": "OFF-0007",
+      "origin": "offline_rule_only"
+    }
+  ],
+  "warning": "Actual CAD tool output, not a model-supplied JSON. No live external LLM was called."
+}
